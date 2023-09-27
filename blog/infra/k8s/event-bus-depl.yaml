@@ -1,0 +1,34 @@
+# Creates a kubernetes deployment
+
+apiVersion: apps/v1
+kind: Deployment # The type of object we want to create
+metadata: # config options for this deployment
+  name: event-bus-depl # Name of deployment
+spec:
+  replicas: 1 # Number of pods we want to create running this image
+  selector:
+    matchLabels:
+      app: event-bus
+  template:
+    metadata:
+      labels:
+        app: event-bus
+    spec:
+      containers:
+        - name: event-bus # Generate a container in the pod with a name of 'event-bus'
+          image: calumbradbury/event-bus:latest # The exact docker image we want to use
+          imagePullPolicy: Never
+
+
+# Useful kubernetes commands
+# kubectl get deployments - list running deployments
+# kubectl describe deployment [deployment_name] - Print out some information about the running deployment
+# kubectl apply -f event-bus-depl.yaml - Build deployment
+# kubectl delete deployment event-bus-depl.yaml - Delete a deployment
+# kubectl rollout restart deployment event-bus-depl - Restart deployment after changes that results in docker image change
+
+# When updating code
+# - Make change to project code
+# - Rebuild docker image with new verion number (0.0.2 etc)
+# - Update image version in this file (unless using latest)
+# - Rebuild this file

@@ -1,0 +1,20 @@
+# kubernetes pod config for posts
+# Docker is about running individual containers, kubernetes is about running a bunch of docker containers together
+# We dont typically create individual pod config files like this
+apiVersion: v1
+kind: Pod # The type of object we want to create
+metadata: # config options for this pod
+  name: posts # Name of pod
+spec: # The exact attributes we want to apply to the object we are creating
+  containers:
+    - name: posts # Generate a container in the pod with a name of 'posts'
+      image: calumbradbury/posts:0.0.1 # The exact image we want to use
+
+
+# Common kubernetes commands
+# kubectl get pods  - list running pods
+# kubectl apply -f posts.yaml - Run in k8s/.yaml file's directory to tell kubernetes to use this config file
+# kubectl exec -it [pod_name] -- [cmd] - Execute the given cmd (command) in a running pod (e.g  "kubectl exec -it posts -- bash" opens a bash shell in the pod)
+# kubectl logs [pod_name] - Print out logs from the given pod
+# kubectl delete pod [pod_name] - Delete a given pod
+# kubectl describe pod [pod_name] - Print out some information about the running pod

@@ -1,0 +1,26 @@
+# Creates a kubernetes service
+
+apiVersion: v1
+kind: Service # The type of object we want to create
+metadata: # config options for this service
+  name: posts-srv # Name of service
+spec:
+  type: NodePort # type of service we are trying to create (The purpose of a NodePort is to expose a set of pods to the outside world)
+  selector:
+    app: posts
+  ports: # All the ports that are exposed on the target pod (posts runs on port 4000)
+    - name: posts
+      protocol: TCP
+      port: 4000
+      targetPort: 4000
+
+
+# Useful kubernetes commands
+# kubectl get services - list running services
+# kubectl apply -f posts-depl.yaml - Build deployment
+# kubectl delete deployment posts-depl.yaml - Delete a deployment
+# kubectl rollout restart deployment posts-depl - Restart deployment after changes that results in docker image change
+# k describe service posts-srv - Print out info about the service including its NodePort etc
+
+# nodePort - Makes the service visible outside the Kubernetes cluster by the node’s IP address and the port number declared in this property. The service also has to be of type NodePort (if this field isn’t specified, Kubernetes will allocate a node port automatically).
+# port - Expose the service on the specified port internally within the cluster. That is, the service becomes visible on this port, and will send requests made to this port to the pods selected by the service.
