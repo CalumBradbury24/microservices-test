@@ -17,10 +17,10 @@ spec:
 
 # Useful kubernetes commands
 # kubectl get services - list running services
-# kubectl apply -f posts-depl.yaml - Build deployment
-# kubectl delete deployment posts-depl.yaml - Delete a deployment
-# kubectl rollout restart deployment posts-depl - Restart deployment after changes that results in docker image change
-# k describe service posts-srv - Print out info about the service including its NodePort etc
+# kubectl apply -f posts-srv.yaml - Build service
+# kubectl delete service posts-srv.yaml - Delete a service
+# kubectl rollout restart service posts-srv - Restart service after changes that results in docker image change
+# k describe service posts-srv - Print out info about the service including its NodePort etc (NodePort: posts  31630/TCP property indicates the port we will access this service from in the browser (e.g localhost:31630/posts))
 
 # nodePort - Makes the service visible outside the Kubernetes cluster by the node’s IP address and the port number declared in this property. The service also has to be of type NodePort (if this field isn’t specified, Kubernetes will allocate a node port automatically).
 # port - Expose the service on the specified port internally within the cluster. That is, the service becomes visible on this port, and will send requests made to this port to the pods selected by the service.
