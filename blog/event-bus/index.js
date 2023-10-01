@@ -21,10 +21,10 @@ app.post('/events', (req, res) => {
             "Content-Type": "application/json"
         }
     }
-    fetch('http://localhost:4000/events', requestOptions); //posts service
-    fetch('http://localhost:4001/events', requestOptions); //comments service
-    fetch('http://localhost:4002/events', requestOptions); //query service
-    fetch('http://localhost:4003/events', requestOptions); //moderation service
+    fetch('http://posts-clusterip-srv:4000/events', requestOptions); //posts service
+    //fetch('http://localhost:4001/events', requestOptions); //comments service
+    //fetch('http://localhost:4002/events', requestOptions); //query service
+    //fetch('http://localhost:4003/events', requestOptions); //moderation service
 
     res.send({ status: 'OK'});
 });
